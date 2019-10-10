@@ -20,15 +20,28 @@ void ofApp::draw(){
             float x = ofMap(i, 0, 6, 50, 750);
             float y = ofMap(j, 0, 6, 50, 750);
             
+            // there's like ~15 of them
+            
+            // https://openframeworks.cc/ofBook/chapters/intro_to_graphics.html
+            // for random point in a circle
+            
+            
             ofBeginShape();
-            ofVertex(x, y);
-            ofVertex(x + 100, y);
-            ofVertex(x + 100, y + 100);
-            ofVertex(x, y + 100);
+            ofVertex(randomInCircle(x, y, ofRandom(100)));
+            ofVertex(randomInCircle(x + 100, y, ofRandom(100)));
+            ofVertex(randomInCircle(x + 100, y + 100, ofRandom(100)));
+            ofVertex(randomInCircle(x, y + 100, ofRandom(100)));
             ofEndShape();
         }
     }
+}
 
+ofVec2f ofApp::randomInCircle(float x, float y, float r) {
+    float angle = ofRandom(ofDegToRad(360.0));
+    float x_offset = cos(angle) * r;
+    float y_offset = sin(angle) * r;
+    return ofVec2f(x + x_offset, y + y_offset);
+    
 }
 
 //--------------------------------------------------------------
