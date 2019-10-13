@@ -16,12 +16,28 @@ void ofApp::draw(){
     ofNoFill();
     ofSetBackgroundColor(255);
     
+    const float height = ofGetViewportHeight();
+    const float width = ofGetViewportWidth();
+    
+    const float num_polys = 6;
+    
+    // these are all percents
+    const float left_margin_pct = .25;
+    const float top_margin_pct = .15;
+    const float base_poly_length_pct = .1;
+    
+    float left_margin = left_margin_pct * width;
+    float top_margin = top_margin_pct * height;
+    float base_poly_length = base_poly_length_pct * width;
+//    float right_margin = (1 - left_margin + base_poly_length*num_polys);
+//    float bottom_margin = (1 - top_margin + base_poly_length*num_polys);
+    
     
     for (int i = 0; i < 6; i++) {
         for (int j = 0; j < 6; j++) {
             
-            float x = ofMap(i, 0, 6, 50, 750);
-            float y = ofMap(j, 0, 6, 50, 750);
+            float x = ofMap(i, 0, 6, left_margin, left_margin + base_poly_length*num_polys);
+            float y = ofMap(j, 0, 6, top_margin, top_margin + base_poly_length*num_polys);
             
             // there's like ~15 of them stacked
             
