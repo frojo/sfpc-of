@@ -13,6 +13,9 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     ofSeedRandom(mouseX * 1000);
+    ofNoFill();
+    ofSetBackgroundColor(255);
+    
     
     for (int i = 0; i < 6; i++) {
         for (int j = 0; j < 6; j++) {
@@ -20,22 +23,22 @@ void ofApp::draw(){
             float x = ofMap(i, 0, 6, 50, 750);
             float y = ofMap(j, 0, 6, 50, 750);
             
-            // there's like ~15 of them
+            // there's like ~15 of them stacked
             
-            // https://openframeworks.cc/ofBook/chapters/intro_to_graphics.html
-            // for random point in a circle
-            
+            ofSetColor(0);
             
             ofBeginShape();
             ofVertex(randomInCircle(x, y, ofRandom(100)));
             ofVertex(randomInCircle(x + 100, y, ofRandom(100)));
             ofVertex(randomInCircle(x + 100, y + 100, ofRandom(100)));
             ofVertex(randomInCircle(x, y + 100, ofRandom(100)));
-            ofEndShape();
+            ofEndShape(true);
         }
     }
 }
 
+// https://openframeworks.cc/ofBook/chapters/intro_to_graphics.html
+// for random point in a circleo
 ofVec2f ofApp::randomInCircle(float x, float y, float r) {
     float angle = ofRandom(ofDegToRad(360.0));
     float x_offset = cos(angle) * r;
