@@ -20,7 +20,7 @@ void ofApp::draw(){
     const float width = ofGetViewportWidth();
     
     const float num_polys = 6;
-    const float num_polys_stacked = 15;
+    const float num_polys_stacked_half = 8;
     
     // these are all percents
     const float left_margin_pct = .25;
@@ -40,7 +40,6 @@ void ofApp::draw(){
     ofColor purple = ofColor(129.0, 76.3, 139.5);
     ofColor colors[5] = {black, blue, orange, green, purple};
     
-    
     for (int i = 0; i < num_polys; i++) {
         for (int j = 0; j < num_polys; j++) {
             
@@ -48,16 +47,19 @@ void ofApp::draw(){
             float y = ofMap(j, 0, num_polys, top_margin, top_margin + base_poly_length*num_polys);
             
             // just pick a random color for now
-            int color_idx = (int)ofRandom(5);
-            ofSetColor(colors[color_idx]);
             
-            for (int k = 0; k < num_polys_stacked; k++) {
-                ofBeginShape();
-                ofVertex(randomInCircle(x, y, ofRandom(rand_offset_r)));
-                ofVertex(randomInCircle(x + base_poly_length, y, ofRandom(rand_offset_r)));
-                ofVertex(randomInCircle(x + base_poly_length, y + base_poly_length, ofRandom(rand_offset_r)));
-                ofVertex(randomInCircle(x, y + base_poly_length, ofRandom(rand_offset_r)));
-                ofEndShape(true);
+            for (int l = 0; l < 2; l++) {
+                // just pick a random color for now
+                int color_idx = (int)ofRandom(5);
+                ofSetColor(colors[color_idx]);
+                for (int k = 0; k < num_polys_stacked_half; k++) {
+                    ofBeginShape();
+                    ofVertex(randomInCircle(x, y, ofRandom(rand_offset_r)));
+                    ofVertex(randomInCircle(x + base_poly_length, y, ofRandom(rand_offset_r)));
+                    ofVertex(randomInCircle(x + base_poly_length, y + base_poly_length, ofRandom(rand_offset_r)));
+                    ofVertex(randomInCircle(x, y + base_poly_length, ofRandom(rand_offset_r)));
+                    ofEndShape(true);
+                }
             }
         }
     }
