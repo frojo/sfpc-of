@@ -26,7 +26,7 @@ void ofApp::draw(){
     const float left_margin_pct = .25;
     const float top_margin_pct = .15;
     const float base_poly_length_pct = .1;
-    const float rand_offset_r_pct = ofMap(mouseY, 0, height, 0, 1);
+    const float rand_offset_r_pct = .6;
     
     float left_margin = left_margin_pct * width;
     float top_margin = top_margin_pct * height;
