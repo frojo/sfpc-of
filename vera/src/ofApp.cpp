@@ -20,35 +20,37 @@ void ofApp::draw(){
     const float width = ofGetViewportWidth();
     
     const float num_polys = 6;
+    const float num_polys_stacked = 15;
     
     // these are all percents
     const float left_margin_pct = .25;
     const float top_margin_pct = .15;
     const float base_poly_length_pct = .1;
+    const float rand_offset_r_pct = .7;
     
     float left_margin = left_margin_pct * width;
     float top_margin = top_margin_pct * height;
     float base_poly_length = base_poly_length_pct * width;
-//    float right_margin = (1 - left_margin + base_poly_length*num_polys);
-//    float bottom_margin = (1 - top_margin + base_poly_length*num_polys);
+    float rand_offset_r = rand_offset_r_pct * base_poly_length;
     
-    
-    for (int i = 0; i < 6; i++) {
-        for (int j = 0; j < 6; j++) {
+    for (int i = 0; i < num_polys; i++) {
+        for (int j = 0; j < num_polys; j++) {
             
-            float x = ofMap(i, 0, 6, left_margin, left_margin + base_poly_length*num_polys);
-            float y = ofMap(j, 0, 6, top_margin, top_margin + base_poly_length*num_polys);
+            float x = ofMap(i, 0, num_polys, left_margin, left_margin + base_poly_length*num_polys);
+            float y = ofMap(j, 0, num_polys, top_margin, top_margin + base_poly_length*num_polys);
             
             // there's like ~15 of them stacked
             
             ofSetColor(0);
             
-            ofBeginShape();
-            ofVertex(randomInCircle(x, y, ofRandom(100)));
-            ofVertex(randomInCircle(x + 100, y, ofRandom(100)));
-            ofVertex(randomInCircle(x + 100, y + 100, ofRandom(100)));
-            ofVertex(randomInCircle(x, y + 100, ofRandom(100)));
-            ofEndShape(true);
+            for (int k = 0; k < num_polys_stacked; k++) {
+                ofBeginShape();
+                ofVertex(randomInCircle(x, y, ofRandom(rand_offset_r)));
+                ofVertex(randomInCircle(x + base_poly_length, y, ofRandom(rand_offset_r)));
+                ofVertex(randomInCircle(x + base_poly_length, y + base_poly_length, ofRandom(rand_offset_r)));
+                ofVertex(randomInCircle(x, y + base_poly_length, ofRandom(rand_offset_r)));
+                ofEndShape(true);
+            }
         }
     }
 }
