@@ -33,15 +33,23 @@ void ofApp::draw(){
     float base_poly_length = base_poly_length_pct * width;
     float rand_offset_r = rand_offset_r_pct * base_poly_length;
     
+    ofColor black = ofColor(0);
+    ofColor blue = ofColor(0, 0, 183.6);
+    ofColor orange = ofColor(236.1, 163.4, 61.8);
+    ofColor green = ofColor(50.6, 210.8, 180.6);
+    ofColor purple = ofColor(129.0, 76.3, 139.5);
+    ofColor colors[5] = {black, blue, orange, green, purple};
+    
+    
     for (int i = 0; i < num_polys; i++) {
         for (int j = 0; j < num_polys; j++) {
             
             float x = ofMap(i, 0, num_polys, left_margin, left_margin + base_poly_length*num_polys);
             float y = ofMap(j, 0, num_polys, top_margin, top_margin + base_poly_length*num_polys);
             
-            // there's like ~15 of them stacked
-            
-            ofSetColor(0);
+            // just pick a random color for now
+            int color_idx = (int)ofRandom(5);
+            ofSetColor(colors[color_idx]);
             
             for (int k = 0; k < num_polys_stacked; k++) {
                 ofBeginShape();
