@@ -13,15 +13,23 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     float t = ofGetElapsedTimef();
+    float theta = t;
     float width = ofGetViewportWidth();
     float height = ofGetViewportHeight();
     
-    float x_origin = width/2;
-    float y_origin = height/2;
-    float r_path = height / 2;
+    float x_origin = width / 2;
+    float y_origin = height / 2;
+    float r = height / 2;
     
-    float x = x_origin + r_path*cos(t);
-    float y = y_origin + r_path*sin(t);
+    
+    // float x_circ = x_origin + r*cos(t);
+    float circleness = ofMap(ofClamp(t, 0, PI), 0, PI, 0, 1);
+    cout << circleness << endl;
+    float x =  x_origin + circleness * r*cos(theta + PI);
+    // float x =  x_origin;
+    // float x = x_circ;
+    
+    float y = y_origin + r*sin(theta);
     
     ofDrawCircle(x, y, 10);
 
