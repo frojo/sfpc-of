@@ -28,18 +28,20 @@ void ofApp::draw(){
     
     // draw the bees
     ofSetColor(0);
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 500; i++) {
         
         cout << mouseX << endl;
-        float theta_particle = theta_path - ((float)i)/mouseX;
+        float theta_particle = theta_path - ((float)i)/1000;
         float r_particle = height*sin(2*theta_particle);
         float x_particle_center = x_origin + .6*r_particle*cos(theta_particle);
         float y_particle_center = y_origin + 1.2*r_particle*sin(theta_particle);
         
-        float x_particle = x_particle_center; //  + 100*sin(t*10);
+        float amp = i/ 5;
+        float phase = ofRandom(2*PI);
+        float x_particle = x_particle_center + amp*sin(t*10 + phase);
         float y_particle = y_particle_center;
         
-        ofDrawCircle(x_particle_center, y_particle_center, 5);
+        ofDrawCircle(x_particle, y_particle, 5);
         
     }
     // ofDrawCircle(p_x, p_y, 5);
@@ -47,14 +49,6 @@ void ofApp::draw(){
     
     ofSetColor(255);
     ofDrawCircle(x_path, y_path, 10);
-    
-    float theta_path_2 = theta_path - .1;
-    float r_path_2 = height*sin(2*theta_path_2);
-    float x_path_2 = x_origin + .6*r_path_2*cos(theta_path_2);
-    float y_path_2 = y_origin + 1.2*r_path_2*sin(theta_path_2);
-    
-    ofSetColor(100);
-    ofDrawCircle(x_path_2, y_path_2, 10);
 
 }
 
