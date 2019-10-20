@@ -12,8 +12,11 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    
+    ofSeedRandom();
+    
     float limit = 8;
-    float t = ofWrap(ofGetElapsedTimef(), 0, 12);
+    float t = 4; // ofWrap(ofGetElapsedTimef(), 0, 12);
     float width = ofGetViewportWidth();
     float height = ofGetViewportHeight();
     float theta_path = t/4 + PI / 4; // ofMap(mouseX, 0, width, 0, 2*PI);
@@ -36,7 +39,7 @@ void ofApp::draw(){
         float x_particle_center = x_origin + .6*r_particle*cos(theta_particle);
         float y_particle_center = y_origin + 1.2*r_particle*sin(theta_particle);
         
-        float amp = i/ 5;
+        float amp = i * ofNoise(2);
         float phase = ofRandom(2*PI);
         float x_particle = x_particle_center + amp*sin(t*10 + phase);
         float y_particle = y_particle_center;
