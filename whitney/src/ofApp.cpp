@@ -16,7 +16,7 @@ void ofApp::draw(){
     ofSeedRandom();
     
     float limit = 8;
-    float t = 4; // ofWrap(ofGetElapsedTimef(), 0, 12);
+    float t = ofWrap(ofGetElapsedTimef(), 0, 12);
     float width = ofGetViewportWidth();
     float height = ofGetViewportHeight();
     float theta_path = t/4 + PI / 4; // ofMap(mouseX, 0, width, 0, 2*PI);
@@ -46,6 +46,22 @@ void ofApp::draw(){
         
         ofDrawCircle(x_particle, y_particle, 5);
         
+        // builds taking slow
+        // caching? being invalidated by my computer somehow?
+        // ask zach
+        // try with new project
+        // system profiler
+        
+        // bootcamp swarm - just load it up?
+        // offsets into noise function
+        // within a range?
+        // particle systems? look for addons? would just let me tweak it to get to what i want
+        
+        // picking up text
+        // don't try to collide first. although box2d
+        // rigidbody is a lot harder than smooth particle-like interaction
+        // daniel shiffman - the nature of code
+        //
     }
     // ofDrawCircle(p_x, p_y, 5);
     
